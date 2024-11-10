@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController; 
+use App\Http\Controllers\WriterController; 
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,4 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [HomeController::class, 'category_index']);
+Route::get('/writers', function () {
+    return view('writers');
+});
+
+// Home Controller
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/writers', [WriterController::class, 'index']);
+
+Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories');

@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Article;
 class HomeController extends Controller
 {
     //
-    public function category_index(){
+    public function index(){
         $categories = Category::all(); //ngambil semua data di Model Category
-        return view('welcome', compact('categories'));
+        $articles = Article::with('writer')->get();
+        return view('welcome', compact('categories','articles'));
     }
+
 }
